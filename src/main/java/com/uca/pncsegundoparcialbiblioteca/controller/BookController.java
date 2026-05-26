@@ -6,6 +6,7 @@ import com.uca.pncsegundoparcialbiblioteca.dto.response.BookDTOResponse;
 import com.uca.pncsegundoparcialbiblioteca.service.BookService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,10 +41,11 @@ public class BookController {
     @PostMapping
     public ResponseEntity<GeneralResponse> createBook(@Valid @RequestBody BookDTORequest book) {
         bookService.createBook(book);
-        return ResponseEntity.ok(GeneralResponse.builder()
+
+        return new ResponseEntity<>(GeneralResponse.builder()
                 .data(book)
                 .message("Book has been created")
-                .build());
+                .build(), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
