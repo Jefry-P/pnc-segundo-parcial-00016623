@@ -1,0 +1,19 @@
+info:
+  name: getAll genre
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: http://localhost:8080/book?genre=FICTION
+  params:
+    - name: genre
+      value: FICTION
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
